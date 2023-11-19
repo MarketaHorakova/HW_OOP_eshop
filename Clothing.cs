@@ -9,6 +9,7 @@ namespace HW_OOP_eshop
     public class Clothing
     {
         public int ID;
+        public string ClassIdentify;
         public string Name = "";
         public int PiecesOnStock;
         public double PriceSell;
@@ -19,9 +20,9 @@ namespace HW_OOP_eshop
         public string Material = "";
         public double TotalPrice = 0;
         
-        public Clothing(string name, int piecesOnStock, double priceSell, double priceBuy, bool discount, string size, string colorMain, string material)
+        public Clothing(string classIdentify, string name, int piecesOnStock, double priceSell, double priceBuy, bool discount, string size, string colorMain, string material)
         {
-
+            ClassIdentify = classIdentify;
             Name = name;
             PiecesOnStock = piecesOnStock;
             PriceSell = priceSell;
