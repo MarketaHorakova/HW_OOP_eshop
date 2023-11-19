@@ -75,7 +75,7 @@ while (!isOver)
                     skrin.Add(new Shirt(nameInput, piecesToStorage, priceSell, priceBuy, size, color, material, 105, true));
                     break;
                 case 2:
-                    skrin.Add(new Accessories(nameInput, piecesToStorage, priceSell, priceBuy, false, size, color, material, "Tie"));
+                    skrin.Add(new Accessories(nameInput, piecesToStorage, priceSell, priceBuy,  size, color, material,false, "Tie"));
                     break;
             }
 
@@ -119,7 +119,6 @@ while (!isOver)
             break;
         // Nacteni ze souboru
         case 6:
-            i = 0;
             string textFromFile = File.ReadAllText(pathStorage);
             string[] lines = textFromFile.Split('\n');
                        
@@ -127,11 +126,22 @@ while (!isOver)
             {
                 string[] oneItem = line.Split(',');
                 id = int.Parse(oneItem[0]);
-                 //////
+                nameInput = oneItem[1];
+                piecesToStorage = int.Parse(oneItem[2]);
+                priceSell= double.Parse(oneItem[3]);
+                priceBuy= double.Parse(oneItem[4]);
+                size = oneItem[5];
+                color = oneItem[6];
+                material = oneItem[7];
+            }
 
+            i = 0;
+            Console.WriteLine("ID, Nazev, Na sklade, Kupni cena, Prodejni cena, Sleva, Velikost, Hlavni barva, Material");
+            foreach (var item in skrin)
+            {
+                Console.WriteLine($"{i},{skrin[i].Name},{skrin[i].PiecesOnStock},{skrin[i].PriceSell},{skrin[i].PriceBuy},{skrin[i].Discount},{skrin[i].Size},{skrin[i].ColorMain},{skrin[i].Material}");
                 i++;
             }
-            
             break;
         // Inventura
         case 7:

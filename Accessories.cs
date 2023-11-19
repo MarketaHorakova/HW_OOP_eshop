@@ -10,7 +10,7 @@ namespace HW_OOP_eshop
     {
         public string TypeOfAccessories = ""; //Tie, BowTie, Handkerchief
 
-        public Accessories (string name, int piecesOnStock, double priceSell, double priceBuy, bool discount, string size, string colorMain, string material,string typeOfAccessories) : base (name, piecesOnStock, priceSell, priceBuy, discount, size, colorMain, material)
+        public Accessories (string name, int piecesOnStock, double priceSell, double priceBuy,  string size, string colorMain, string material,bool discount,string typeOfAccessories) : base (name, piecesOnStock, priceSell, priceBuy, discount, size, colorMain, material)
         {
             TypeOfAccessories = typeOfAccessories;
         }
