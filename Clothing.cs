@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,44 +34,7 @@ namespace HW_OOP_eshop
             Material = material;
                                   
         }
-        //public void AddToFile (string pathToFile)
-        //{
-        //    Console.WriteLine("Kterou položku:\n" +
-        //        "0 - Tričko pod košili\n" +
-        //        "1 - Košili\n" +
-        //        "2 - Příslušenství");
-        //    int.TryParse(Console.ReadLine(), out int choosenNumberItem);
-        //    Console.WriteLine("ID number: ");
-        //    int.TryParse(Console.ReadLine(), out int iDNumber);
-        //    Console.WriteLine("Nazev polozky");
-        //    string nameInput = Console.ReadLine();
-        //    Console.WriteLine("Pocet kusu: ");
-        //    int.TryParse(Console.ReadLine(), out int piecesToStorage);
-        //    Console.WriteLine("Kupni cena: ");
-        //    double.TryParse(Console.ReadLine(), out double priceBuy);
-        //    Console.WriteLine($"Prodejni cena ({priceBuy * 1.81}): ");
-        //    double.TryParse(Console.ReadLine(), out double priceSell);
-        //    Console.WriteLine("Velikost");
-        //    string size = Console.ReadLine();
-        //    Console.WriteLine("Barva");
-        //    string color = Console.ReadLine();
-        //    Console.WriteLine("Material");
-        //    string material = Console.ReadLine();
-
-        //    switch (choosenNumberItem)
-        //    {
-        //        case 0:
-        //            skrin.Add(new Tshirt(iDNumber, nameInput, piecesToStorage, priceSell, priceBuy, size, color, material, 95, "V shape", true));
-        //            break;
-        //        case 1:
-        //            skrin.Add(new Shirt(iDNumber, nameInput, piecesToStorage, priceSell, priceBuy, size, color, material, 105, true));
-        //            break;
-        //        case 2:
-        //            skrin.Add(new Accessories(iDNumber, nameInput, piecesToStorage, priceSell, priceBuy, false, size, color, material, "Tie"));
-        //            break;
-        //    }
-        //}
-
+        
 
         public double Sell (int id, int piecesToSell)
         {
@@ -80,10 +44,25 @@ namespace HW_OOP_eshop
             return TotalPrice;
         }
 
-        public void ToStock(float id, int piecesToStock)
+        public void ToStock(string path, int id, int piecesToStock)
         {
-            PiecesOnStock += piecesToStock;
+            string textFromFile = File.ReadAllText(path);
+            string[] lines = textFromFile.Split('\n');
 
+            foreach (var line in lines)
+            {
+                string[] oneItem = line.Split(',');
+
+                int idToFind = int.Parse(oneItem[1]);
+                int piecesToStorage = int.Parse(oneItem[3])+piecesToStock;
+          
+                if (id == idToFind)
+                {
+                    oneItem[3] = piecesToStorage.ToString();
+                }
+                
+            }
+            //PiecesOnStock += piecesToStock;
         }
 
     }

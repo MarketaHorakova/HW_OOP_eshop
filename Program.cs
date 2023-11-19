@@ -13,9 +13,9 @@ while (!isOver)
     Console.WriteLine("Menu:\n" +
         "0 - Konec\n" +
         "1 - Pridej položku\n" +
-        "2 - Vymaž položku ze souborů\n" +
+        "2 - Naskladni polozky \n" +
         "3 - Prodej položek\n" +
-        "4 - Naskladni polozky\n" +
+        "4 - Vymaž položku ze souborů\n" +
         "5 - Zapis do souboru\n" +
         "6 - Inventura");
     int.TryParse(Console.ReadLine(), out int choosenNumberMenu);
@@ -71,9 +71,13 @@ while (!isOver)
 
             break;
         //Naskladneni polozky
-        //    case 2:
-
-        //        break;
+        case 2:
+            Console.WriteLine("Id polozky pro pridani: ");
+            int.TryParse(Console.ReadLine(), out int idToStorage);
+            Console.WriteLine("Pocet polozek pro naskladneni: ");
+            int.TryParse(Console.ReadLine(), out int toStorage);
+            skrin[idToStorage].ToStock(pathStorage, idToStorage, toStorage);
+            break;
         //Prodej polozek
         case 3:
             Console.WriteLine("Zadej ID polozky:");
