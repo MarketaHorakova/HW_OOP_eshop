@@ -22,8 +22,8 @@ while (!isOver)
     Console.WriteLine("Menu:\n" +
         "0 - Konec\n" +
         "1 - Pridej položku\n" +
-        "2 - Prodej položek\n" +
-        "3 - Vymaž položku ze souborů\n" +
+        "2 - Vymaž položku ze souborů\n" +
+        "3 - Prodej položek\n" +
         "4 - Naskladni polozku\n" +
         "5 - Inventura");
     int.TryParse(Console.ReadLine(), out int choosenNumberMenu);
@@ -41,7 +41,7 @@ while (!isOver)
                  "1 - Košili\n" +
                  "2 - Příslušenství");
             int.TryParse(Console.ReadLine(), out int choosenNumberItem);
-            Console.WriteLine("ID number: ");
+            Console.WriteLine("Zadej nazev polozky: ");
             string nameInput = Console.ReadLine();
             Console.WriteLine("Pocet kusu: ");
             int.TryParse(Console.ReadLine(), out int piecesToStorage);
