@@ -1,18 +1,25 @@
 ﻿using HW_OOP_eshop;
 
 string pathStorage = "C:\\Users\\marketa.zemlova\\Visual Studio 2023\\C sharp 2\\HW_OOP_eshop\\Storage.txt";
-//string pathDescription = "C:\\Users\\marketa.zemlova\\Visual Studio 2023\\C sharp 2\\HW_OOP_eshop\\Description.txt";
 
-
-Clothing kabatXL = new Clothing ( "Coat", 0, 8999.99, 6000, false, "XL", "black", "polyester");
-
-Tshirt trikoS = new Tshirt("Tricko telove",0, 999.9, 700 ,"S", "beige", "cotton", 95, "V shape", true);
 
 List<Clothing> skrin = new List<Clothing>();
-skrin.Add(kabatXL);
-skrin.Add(trikoS);
-skrin.Add(new Shirt("Kosile bila", 0, 899.9, 600, "XL", "white", "cotton", 105, true));
-skrin.Add(new Shirt("Kosile ivory",0, 919.9, 800, "XL", "ivory", "cotton", 110, true));
+skrin.Add(new Tshirt("Tricko telove", 0, 1350, 700, "S", "beige", "cotton", 95, "circle shape", true));
+skrin.Add(new Tshirt("Tricko telove", 0, 1350, 700, "M", "beige", "cotton", 98, "circle shape", true));
+skrin.Add(new Tshirt("Tricko telove", 0, 1350, 700, "L", "beige", "cotton", 102, "circle shape", true));
+skrin.Add(new Tshirt("Tricko telove", 0, 1350, 700, "XL", "beige", "cotton", 105, "circle shape", true));
+skrin.Add(new Tshirt("Tricko telove", 0, 1350, 700, "2XL", "beige", "cotton", 108, "circle shape", true));
+skrin.Add(new Tshirt("Tricko telove", 0, 1350, 700, "3XL", "beige", "cotton", 112, "circle shape", true));
+skrin.Add(new Tshirt("Tricko telove", 0, 1350, 700, "4XL", "beige", "cotton", 116, "circle shape", true));
+skrin.Add(new Tshirt("Tricko telove", 0, 1650, 900, "S", "beige", "polyester", 100, "V shape", true));
+skrin.Add(new Tshirt("Tricko telove", 0, 1650, 900, "M", "beige", "polyester", 100, "V shape", true));
+skrin.Add(new Tshirt("Tricko telove", 0, 1650, 900, "L", "beige", "polyester", 105, "V shape", true));
+skrin.Add(new Tshirt("Tricko telove", 0, 1650, 900, "XL", "beige", "polyester", 105, "V shape", true));
+skrin.Add(new Tshirt("Tricko telove", 0, 1650, 900, "2XL", "beige", "polyester", 110, "V shape", true));
+skrin.Add(new Tshirt("Tricko telove", 0, 1650, 900, "3XL", "beige", "polyester", 110, "V shape", true));
+skrin.Add(new Tshirt("Tricko telove", 0, 1650, 900, "4XL", "beige", "polyester", 110, "V shape", true));
+skrin.Add(new Shirt("Kosile bila", 0, 1090, 600, "XL", "white", "cotton", 105, true));
+skrin.Add(new Shirt("Kosile ivory",0, 1450, 800, "XL", "ivory", "cotton", 110, true));
 
 bool isOver = false;
 
@@ -24,8 +31,10 @@ while (!isOver)
         "1 - Pridej položku\n" +
         "2 - Vymaž položku ze souborů\n" +
         "3 - Prodej položek\n" +
-        "4 - Naskladni polozku\n" +
-        "5 - Inventura");
+        "4 - Naskladni polozky\n" +
+        "5 - Zapis do souboru\n" +
+        "6 - Nacteni ze souboru\n" +
+        "7 - Inventura");
     int.TryParse(Console.ReadLine(), out int choosenNumberMenu);
 
     switch (choosenNumberMenu)
@@ -98,10 +107,35 @@ while (!isOver)
         //        string output = JsonConvert.SerializeObject(realDictionary);
         //        File.WriteAllText(pathJson, output);
         //        break;
-
-        // Inventura
+        
+        // Zapis do souboru
         case 5:
             int i = 0;
+            foreach (var item in skrin)
+            {
+                File.AppendAllText(pathStorage,$"{i},{skrin[i].Name},{skrin[i].PiecesOnStock},{skrin[i].PriceSell},{skrin[i].PriceBuy},{skrin[i].Discount},{skrin[i].Size},{skrin[i].ColorMain},{skrin[i].Material}\n");
+                i++;
+            }
+            break;
+        // Nacteni ze souboru
+        case 6:
+            i = 0;
+            string textFromFile = File.ReadAllText(pathStorage);
+            string[] lines = textFromFile.Split('\n');
+                       
+            foreach (var line in lines)
+            {
+                string[] oneItem = line.Split(',');
+                id = int.Parse(oneItem[0]);
+                 //////
+
+                i++;
+            }
+            
+            break;
+        // Inventura
+        case 7:
+            i = 0;
             Console.WriteLine("ID, Nazev, Na sklade, Kupni cena, Prodejni cena, Sleva, Velikost, Hlavni barva, Material");
             foreach (var item in skrin)
             {
