@@ -12,7 +12,7 @@ namespace HW_OOP_eshop
         public bool IsClassicCollar = true;
         public bool IslongSleave = true;
 
-        public Shirt(float id,string name, int piecesOnStock, double priceSell, double priceBuy, string size, string colorMain, string material, int length, bool typeOfCollar) : base (id, name, piecesOnStock, priceSell, priceBuy, false, size, colorMain, material)
+        public Shirt(string name, int piecesOnStock, double priceSell, double priceBuy, string size, string colorMain, string material, int length, bool typeOfCollar) : base (name, piecesOnStock, priceSell, priceBuy, false, size, colorMain, material)
         {
             Length = length;
             IsClassicCollar = typeOfCollar;

@@ -8,7 +8,7 @@ namespace HW_OOP_eshop
 {
     public class Clothing
     {
-        public float Id;
+        public int ID;
         public string Name = "";
         public int PiecesOnStock;
         public double PriceSell;
@@ -19,9 +19,9 @@ namespace HW_OOP_eshop
         public string Material = "";
         public double TotalPrice = 0;
         
-        public Clothing(float id, string name, int piecesOnStock, double priceSell, double priceBuy, bool discount, string size, string colorMain, string material)
+        public Clothing(string name, int piecesOnStock, double priceSell, double priceBuy, bool discount, string size, string colorMain, string material)
         {
-            Id = id;
+
             Name = name;
             PiecesOnStock = piecesOnStock;
             PriceSell = priceSell;
@@ -71,10 +71,10 @@ namespace HW_OOP_eshop
         //}
 
 
-        public double Sell (float id, int piecesToSell)
+        public double Sell (int id, int piecesToSell)
         {
-            Id = id;
-            TotalPrice += piecesToSell * PriceSell;
+            ID = id;
+            TotalPrice += (piecesToSell * PriceSell);
             PiecesOnStock -= piecesToSell;
             return TotalPrice;
         }
