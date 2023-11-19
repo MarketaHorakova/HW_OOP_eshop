@@ -14,3 +14,5 @@ Tshirt,12,Tricko telove,0,1650,900,False,3XL,beige,polyester
 Tshirt,13,Tricko telove,0,1650,900,False,4XL,beige,polyester
 Shirt,14,Kosile bila,0,1090,600,False,XL,white,cotton
 Shirt,15,Kosile ivory,0,1450,800,False,XL,ivory,cotton
+Accessories,16,Motylek modry,30,370,200,False,univerzalni,Modra,hedvabi
+Accessories,17,Kravata seda,20,1100,600,False,univerzalni,seda,hedvabi
