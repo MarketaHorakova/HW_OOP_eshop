@@ -88,12 +88,91 @@ while (!isOver)
             Console.WriteLine(skrin[id].Sell(id, quantity));
             break;
 
+        // Vymazani polozky ze souboru
+        case 4:
+            Console.WriteLine("Zadej ID polozky k vymazani:");
+            int.TryParse(Console.ReadLine(), out int idToRemove);
 
-        //    // Vymazani polozky ze souboru
-        //    case 4:
+            //nacteni ze souboru
+            textFromFile = File.ReadAllText(pathStorage);
+            lines = textFromFile.Split('\n');
 
-        //        break;
-        
+            foreach (var line in lines)
+            {
+                string[] oneItem = line.Split(',');
+
+                id = int.Parse(oneItem[1]);
+                nameInput = oneItem[2];
+                piecesToStorage = int.Parse(oneItem[3]);
+                priceSell = double.Parse(oneItem[4]);
+                priceBuy = double.Parse(oneItem[5]);
+                discount = bool.Parse(oneItem[6]);
+                size = oneItem[7];
+                color = oneItem[8];
+                material = oneItem[9];
+
+                if (id != idToRemove)
+                {
+                    switch (oneItem[0])
+                    {
+                        case "Tshirt":
+                            skrin.Add(new Tshirt("Tshirt", nameInput, piecesToStorage, priceSell, priceBuy, size, color, material, 95, "V shape", true));
+                            break;
+                        case "Shirt":
+                            skrin.Add(new Shirt("Shirt", nameInput, piecesToStorage, priceSell, priceBuy, size, color, material, 105, true));
+                            break;
+                        case "Accessories":
+                            skrin.Add(new Accessories("Accessories", nameInput, piecesToStorage, priceSell, priceBuy, size, color, material, false, "Tie"));
+                            break;
+                    }
+                
+                }
+            }
+
+            i = 0;
+            File.Delete(pathStorage);
+
+            foreach (var item in skrin)
+            {
+                switch (item.ClassIdentify)
+                {
+                    case "Tshirt":
+                        if (!File.Exists(pathStorage))
+                        {
+                            File.AppendAllText(pathStorage, $"{"Tshirt"},{i},{skrin[i].Name},{skrin[i].PiecesOnStock},{skrin[i].PriceSell},{skrin[i].PriceBuy},{skrin[i].Discount},{skrin[i].Size},{skrin[i].ColorMain},{skrin[i].Material}");
+                        }
+                        else
+                        {
+                            File.AppendAllText(pathStorage, $"\n{"Tshirt"},{i},{skrin[i].Name},{skrin[i].PiecesOnStock},{skrin[i].PriceSell},{skrin[i].PriceBuy},{skrin[i].Discount},{skrin[i].Size},{skrin[i].ColorMain},{skrin[i].Material}");
+                        }
+                        break;
+                    case "Shirt":
+                        if (!File.Exists(pathStorage))
+                        {
+                            File.AppendAllText(pathStorage, $"{"Shirt"},{i},{skrin[i].Name},{skrin[i].PiecesOnStock},{skrin[i].PriceSell},{skrin[i].PriceBuy},{skrin[i].Discount},{skrin[i].Size},{skrin[i].ColorMain},{skrin[i].Material}");
+                        }
+                        else
+                        {
+                            File.AppendAllText(pathStorage, $"\n{"Shirt"},{i},{skrin[i].Name},{skrin[i].PiecesOnStock},{skrin[i].PriceSell},{skrin[i].PriceBuy},{skrin[i].Discount},{skrin[i].Size},{skrin[i].ColorMain},{skrin[i].Material}");
+                        }
+                        break;
+                    case "Accessories":
+                        if (!File.Exists(pathStorage))
+                        {
+                            File.AppendAllText(pathStorage, $"{"Accessories"},{i},{skrin[i].Name},{skrin[i].PiecesOnStock},{skrin[i].PriceSell},{skrin[i].PriceBuy},{skrin[i].Discount},{skrin[i].Size},{skrin[i].ColorMain},{skrin[i].Material}");
+                        }
+                        else
+                        {
+                            File.AppendAllText(pathStorage, $"\n{"Accessories"},{i},{skrin[i].Name},{skrin[i].PiecesOnStock},{skrin[i].PriceSell},{skrin[i].PriceBuy},{skrin[i].Discount},{skrin[i].Size},{skrin[i].ColorMain},{skrin[i].Material}");
+                        }
+                        break;
+                }
+                i++;
+            }
+
+            break;
+
+
         // Zapis do souboru
         case 5:
             i = 0;
