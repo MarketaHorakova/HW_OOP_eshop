@@ -49,21 +49,45 @@ namespace HW_OOP_eshop
             string textFromFile = File.ReadAllText(path);
             string[] lines = textFromFile.Split('\n');
 
-            foreach (var line in lines)
+            foreach (string line in lines)
             {
                 string[] oneItem = line.Split(',');
-
+             
                 int idToFind = int.Parse(oneItem[1]);
                 int piecesToStorage = int.Parse(oneItem[3])+piecesToStock;
-          
-                if (id == idToFind)
+                using (StreamWriter sw = File.AppendText(path))
                 {
-                    oneItem[3] = piecesToStorage.ToString();
+                    if (id == idToFind)
+                    {
+                        oneItem[3] = piecesToStorage.ToString();
+                        string newLine = string.Join(',', oneItem[0], oneItem[1], oneItem[2], oneItem[3], oneItem[4], oneItem[5], oneItem[6], oneItem[7], oneItem[8], oneItem[9]);
+                        Console.WriteLine(newLine);
+                        sw.WriteLine(newLine);
+
+                    }
+                    else
+                    {
+                        sw.WriteLine(line);
+                    }
                 }
                 
             }
-            //PiecesOnStock += piecesToStock;
-        }
+    
+            File.Delete(path);
+
+            foreach (var line in lines)
+            {
+                if (!File.Exists(path))
+                {
+                    File.AppendAllText(path, line);
+                }
+                else
+                {
+                    File.AppendAllText(path, $"\n{line}");
+                }
+
+            }
+        }             
 
     }
 }
