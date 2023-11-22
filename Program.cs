@@ -222,6 +222,8 @@ while (!isOver)
             textFromFile = File.ReadAllText(pathStorage);
             lines = textFromFile.Split('\n');
 
+            skrin.Clear();
+
             foreach (var line in lines)
             {
                 string[] oneItem = line.Split(',');
